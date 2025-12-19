@@ -3,14 +3,11 @@ from __future__ import annotations
 import math
 import cmath
 
-def newton_method(a: float, b: float, c: float, d: float, k: float, x0: float = 1, tolerance: float = 1e-10, max_iterations: int = 1000) -> float:
-    """
-    Метод Ньютона (касательных) для нахождения корня уравнения 4-ой степени
-    f(x) = ax^4 + bx^3 + cx^2 + dx + k
-    f'(x) = 4ax^3 + 3bx^2 + 2cx + d
-    """
-    # Пробуем разные начальные точки, если метод не сходится
-    initial_points: list[float] = [0.0, x0, -x0, 0.1, -0.1, 0.5, -0.5, 1.0, -1.0, 2.0, -2.0, 10.0, -10.0]
+# Метод Ньютона (касательных) для нахождения одного корня уравнения 4-ой степени
+def newton_method_single(a: float, b: float, c: float, d: float, k: float, x0: float = 1, tolerance: float = 1e-10, max_iterations: int = 1000) -> float:
+    # Пробуем разные начальные точки
+    # Сначала пробуем 0.0 (важно для уравнений вида x^n = 0), затем x0, потом плотную сетку
+    initial_points: list[float] = [0.0, x0] + [x / 2 for x in range(-200, 201)]
 
     best_x: float = x0
     best_fx: float = abs(a * x0**4 + b * x0**3 + c * x0**2 + d * x0 + k)
@@ -53,11 +50,51 @@ def newton_method(a: float, b: float, c: float, d: float, k: float, x0: float = 
 
     return best_x
 
+# Деление полинома 4-ой степени на (x - root) методом Горнера (рекурсивная реализация)
+# a - найденный корень
+# b(n) - коэффициент многочлена (нового, 3-ей степени)
+# a(n) - изначальный коэффициент
+# b(n) = a(n)
+# b(n-1) = a(n-1) + b(n) * a
+def divide_polynomial(a: float, b: float, c: float, d: float, k: float, root: float) -> tuple[float, float, float, float]:
+    def horner_step(coeffs: list[float], root: float, accumulated: list[float] = None) -> list[float]:
+        if accumulated is None:
+            accumulated = []
+
+        if not coeffs:
+            return accumulated
+
+        if not accumulated:
+            new_coeff = coeffs[0]
+        else:
+            new_coeff = coeffs[0] + accumulated[-1] * root
+
+        return horner_step(coeffs[1:], root, accumulated + [new_coeff])
+
+    result = horner_step([a, b, c, d], root)
+    return tuple(result)
+
+# Метод Ньютона с понижением степени для нахождения всех корней уравнения 4-ой степени
+def newton_method(a: float, b: float, c: float, d: float, k: float, x0: float = 1, tolerance: float = 1e-10, max_iterations: int = 1000) -> list[float | complex]:
+    # Находим первый корень методом Ньютона
+    root1: float = newton_method_single(a, b, c, d, k, x0, tolerance, max_iterations)
+    print(f"Первый корень (метод Ньютона): x1 = {root1:.4f}")
+
+    # Делим полином на (x - root1) для получения кубического полинома
+    b3, c3, d3, k3 = divide_polynomial(a, b, c, d, k, root1)
+    print(f"Понижение степени: получен кубический полином")
+    print(f"  {b3:.4f}x³ + {c3:.4f}x² + {d3:.4f}x + {k3:.4f} = 0")
+
+    # Решаем кубическое уравнение методом Кардано
+    cubic_roots: list[float | complex] = cardano_method(b3, c3, d3, k3)
+
+    # Собираем все корни вместе
+    all_roots: list[float | complex] = [root1] + cubic_roots
+
+    return all_roots
+
+# Метод Кардано для решения кубического уравнения
 def cardano_method(b: float, c: float, d: float, k: float) -> list[float | complex]:
-    """
-    Метод Кардано для решения кубического уравнения
-    bx^3 + cx^2 + dx + k = 0
-    """
     # Приводим к виду x^3 + px + q = 0
     # Делим на b
     a2: float = c / b
@@ -76,14 +113,16 @@ def cardano_method(b: float, c: float, d: float, k: float) -> list[float | compl
     roots: list[float | complex]
 
     if abs(D) < 1e-10:
-        # Кратные корни
+        # Кратные корни (D = 0)
         if abs(R) < 1e-10:
             roots = [0.0 - a2 / 3] * 3
         else:
-            cube_R_val: float = R ** (1.0/3.0) if R >= 0 else -(abs(R) ** (1.0/3.0))
-            cube_R: float = cube_R_val
-            r1: float = 2 * cube_R
-            r2: float = -cube_R
+            # Формула Кардано для D = 0: x1 = 2*cuberoot(-R), x2 = x3 = -cuberoot(-R)
+            neg_R: float = -R
+            cube_neg_R_val: float = neg_R ** (1.0/3.0) if neg_R >= 0 else -(abs(neg_R) ** (1.0/3.0))
+            cube_neg_R: float = cube_neg_R_val
+            r1: float = 2 * cube_neg_R
+            r2: float = -cube_neg_R
             roots = [r1 - a2 / 3, r2 - a2 / 3, r2 - a2 / 3]
     elif D > 0:
         # Один действительный корень и два комплексных
@@ -111,11 +150,8 @@ def cardano_method(b: float, c: float, d: float, k: float) -> list[float | compl
 
     return roots
 
+# Решение квадратного уравнения cx^2 + dx + k = 0 по формуле Виета
 def vieta_quadratic(c: float, d: float, k: float) -> list[float | complex]:
-    """
-    Решение квадратного уравнения cx^2 + dx + k = 0
-    по формуле Виета
-    """
     discriminant: float = d**2 - 4 * c * k
 
     x1: float | complex
@@ -131,16 +167,27 @@ def vieta_quadratic(c: float, d: float, k: float) -> list[float | complex]:
 
     return [x1, x2]
 
+def remove_duplicate_roots(roots: list[float | complex]) -> list[float | complex]:
+    unique_roots = []
+    seen = set()
+    for root in roots:
+        if isinstance(root, complex):
+            rounded = (round(root.real, 4), round(root.imag, 4))
+        else:
+            rounded = round(root, 4)
+
+        if rounded not in seen:
+            seen.add(rounded)
+            unique_roots.append(root)
+    return unique_roots
+
+# Решение уравнения 4-ой степени ax^4 + bx^3 + cx^2 + dx + k = 0
 def solve_quartic(a: float, b: float, c: float, d: float, k: float) -> list[float | complex] | str:
-    """
-    Решение уравнения 4-ой степени ax^4 + bx^3 + cx^2 + dx + k = 0
-    """
     # Случай 1: a != 0 - уравнение 4-ой степени
     if a != 0:
-        print("Решение уравнения 4-ой степени методом Ньютона")
-        root: float = newton_method(a, b, c, d, k)
-        print(f"Первый корень (метод Ньютона): x = {root:.2f}")
-        return [root]
+        print("Решение уравнения 4-ой степени методом Ньютона с понижением степени")
+        roots: list[float | complex] = newton_method(a, b, c, d, k)
+        return roots
 
     # Случай 2: a == 0, b != 0 - кубическое уравнение
     elif b != 0:
@@ -188,27 +235,29 @@ def main() -> None:
         elif len(roots) == 0:
             print("Решений нет")
         else:
+            roots = remove_duplicate_roots(roots)
+
             print("\nКорни уравнения:")
             for i, root in enumerate(roots, 1):
                 if isinstance(root, complex):
                     if root.imag == 0:
-                        print(f"x{i} = {root.real:.2f}")
+                        print(f"x{i} = {root.real:.4f}")
                     else:
                         # Форматирование комплексного числа
                         real_part = root.real
                         imag_part = root.imag
                         if abs(real_part) < 1e-10:  # Если действительная часть ~ 0
                             if imag_part > 0:
-                                print(f"x{i} = {imag_part:.2f}i")
+                                print(f"x{i} = {imag_part:.4f}i")
                             else:
-                                print(f"x{i} = {imag_part:.2f}i")
+                                print(f"x{i} = {imag_part:.4f}i")
                         else:
                             if imag_part >= 0:
-                                print(f"x{i} = {real_part:.2f} + {imag_part:.2f}i")
+                                print(f"x{i} = {real_part:.4f} + {imag_part:.4f}i")
                             else:
-                                print(f"x{i} = {real_part:.2f} - {abs(imag_part):.2f}i")
+                                print(f"x{i} = {real_part:.4f} - {abs(imag_part):.4f}i")
                 else:
-                    print(f"x{i} = {root:.2f}")
+                    print(f"x{i} = {root:.4f}")
 
     except ValueError:
         print("Ошибка: введите числовые значения")
