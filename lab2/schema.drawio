@@ -1,0 +1,581 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Safari/605.1.15" version="29.2.4">
+  <diagram name="1. Главная схема" id="lab2-main-flowchart">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="start" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Начало" vertex="1">
+          <mxGeometry x="344" y="40" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="read_A" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Чтение матрицы A&#10;из файла A.txt" vertex="1">
+          <mxGeometry x="304" y="130" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="read_b" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Чтение вектора b&#10;из файла B.txt" vertex="1">
+          <mxGeometry x="304" y="215" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="check_diag" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="A[i][i] ≠ 0&#10;для всех i?" vertex="1">
+          <mxGeometry x="344" y="305" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="err_diag" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Ошибка: найден нулевой&#10;диагональный элемент&#10;(ValueError)" vertex="1">
+          <mxGeometry x="60" y="300" width="240" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="square_call" parent="1" style="shape=process;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;size=0.1;fontColor=#000000;" value="Проверка:&#10;матрица квадратная?&#10;(см. стр. 2)" vertex="1">
+          <mxGeometry x="560" y="300" width="200" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="check_square_result" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="A — квадратная?" vertex="1">
+          <mxGeometry x="344" y="405" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="err_not_square" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Сообщение:&#10;«Матрица A не является&#10;квадратной»&#10;и завершение" vertex="1">
+          <mxGeometry x="60" y="400" width="240" height="85" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_call" parent="1" style="shape=process;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;size=0.1;fontColor=#000000;" value="det(A) — разложение&#10;Лапласса (см. стр. 3)" vertex="1">
+          <mxGeometry x="304" y="510" width="220" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="check_singular" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="det(A) = 0?" vertex="1">
+          <mxGeometry x="354" y="605" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="err_singular" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Сообщение:&#10;«Матрица A является&#10;вырожденной»&#10;и завершение" vertex="1">
+          <mxGeometry x="60" y="600" width="240" height="85" as="geometry" />
+        </mxCell>
+
+        <mxCell id="relax_call" parent="1" style="shape=process;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;size=0.1;fontColor=#000000;" value="Метод релаксации&#10;(см. стр. 4)" vertex="1">
+          <mxGeometry x="304" y="720" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="output" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Вывод: x1..xn&#10;и число итераций" vertex="1">
+          <mxGeometry x="304" y="810" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="end" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry x="359" y="910" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- edges -->
+        <mxCell id="e_start_readA" edge="1" parent="1" source="start" target="read_A" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_readA_readb" edge="1" parent="1" source="read_A" target="read_b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_readb_checkdiag" edge="1" parent="1" source="read_b" target="check_diag" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_checkdiag_no" edge="1" parent="1" source="check_diag" target="err_diag" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_checkdiag_yes_to_squarecall" edge="1" parent="1" source="check_diag" target="square_call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_squarecall_to_squaredecision" edge="1" parent="1" source="square_call" target="check_square_result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="430" />
+              <mxPoint x="484" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_square_no" edge="1" parent="1" source="check_square_result" target="err_not_square" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_square_yes_to_det" edge="1" parent="1" source="check_square_result" target="det_call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_det_to_singular" edge="1" parent="1" source="det_call" target="check_singular" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_singular_yes" edge="1" parent="1" source="check_singular" target="err_singular" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_singular_no_to_relax" edge="1" parent="1" source="check_singular" target="relax_call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_relax_to_output" edge="1" parent="1" source="relax_call" target="output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_output_end" edge="1" parent="1" source="output" target="end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- labels -->
+        <mxCell id="lbl_diag_yes" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Times New Roman;fontSize=11;fontColor=#000000;" value="Да" vertex="1">
+          <mxGeometry x="500" y="325" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_diag_no" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Times New Roman;fontSize=11;fontColor=#000000;" value="Нет" vertex="1">
+          <mxGeometry x="315" y="325" width="40" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lbl_square_yes" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Times New Roman;fontSize=11;fontColor=#000000;" value="Да" vertex="1">
+          <mxGeometry x="460" y="480" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_square_no" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Times New Roman;fontSize=11;fontColor=#000000;" value="Нет" vertex="1">
+          <mxGeometry x="315" y="420" width="40" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lbl_det_yes" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Times New Roman;fontSize=11;fontColor=#000000;" value="Да" vertex="1">
+          <mxGeometry x="300" y="620" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_det_no" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Times New Roman;fontSize=11;fontColor=#000000;" value="Нет" vertex="1">
+          <mxGeometry x="460" y="680" width="40" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="2. Проверка квадратности" id="lab2-square-diagram">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="sq_start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=13;align=center;fontStyle=1;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Подпрограмма is_square_matrix(A)" vertex="1">
+          <mxGeometry x="274" y="40" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="n = len(A)" vertex="1">
+          <mxGeometry x="314" y="130" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_n_zero" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="n = 0?" vertex="1">
+          <mxGeometry x="354" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_ret_false_0" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: False" vertex="1">
+          <mxGeometry x="80" y="205" width="170" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_loop_i" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="i:=0, n-1, 1" vertex="1">
+          <mxGeometry x="314" y="300" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_check_row" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="len(A[i]) = n?" vertex="1">
+          <mxGeometry x="334" y="375" width="160" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_ret_false" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: False" vertex="1">
+          <mxGeometry x="580" y="387" width="170" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_ret_true" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: True" vertex="1">
+          <mxGeometry x="314" y="500" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sq_end" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry x="359" y="575" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- edges -->
+        <mxCell id="sq_e1" edge="1" parent="1" source="sq_start" target="sq_n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_e2" edge="1" parent="1" source="sq_n" target="sq_n_zero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_e3_no" edge="1" parent="1" source="sq_n_zero" target="sq_loop_i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_e3_yes" edge="1" parent="1" source="sq_n_zero" target="sq_ret_false_0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_e4" edge="1" parent="1" source="sq_loop_i" target="sq_check_row" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_e5_yes" edge="1" parent="1" source="sq_check_row" target="sq_loop_i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="410" />
+              <mxPoint x="250" y="322.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sq_e5_no" edge="1" parent="1" source="sq_check_row" target="sq_ret_false" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_e6_exit" edge="1" parent="1" source="sq_loop_i" target="sq_ret_true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="322.5" />
+              <mxPoint x="590" y="475" />
+              <mxPoint x="414" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sq_e7" edge="1" parent="1" source="sq_ret_true" target="sq_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- labels -->
+        <mxCell id="sq_lbl_n0_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="310" y="215" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_lbl_n0_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="414" y="260" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_lbl_row_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="275" y="385" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_lbl_row_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="510" y="395" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sq_lbl_loop_exit" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="535" y="300" width="30" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="3. Определитель (разложение Лапласса)" id="lab2-det-diagram">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="det_start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=13;align=center;fontStyle=1;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Подпрограмма determinant(A)&#10;(разложение Лапласса)" vertex="1">
+          <mxGeometry x="244" y="40" width="340" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_ln" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="ln = len(A)" vertex="1">
+          <mxGeometry x="314" y="140" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_case1" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="ln = 1?" vertex="1">
+          <mxGeometry x="354" y="205" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_ret1" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: A[0][0]" vertex="1">
+          <mxGeometry x="60" y="210" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_case2" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="ln = 2?" vertex="1">
+          <mxGeometry x="354" y="295" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_ret2" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: A00·A11 - A01·A10" vertex="1">
+          <mxGeometry x="60" y="300" width="250" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_init" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="det = 0" vertex="1">
+          <mxGeometry x="314" y="385" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_loop_k" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="k:=0, ln-1, 1" vertex="1">
+          <mxGeometry x="314" y="450" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_minor" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="minor = A без 0-й строки&#10;и k-го столбца" vertex="1">
+          <mxGeometry x="294" y="520" width="240" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_update" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="det += A[0][k] · (-1)^k · determinant(minor)" vertex="1">
+          <mxGeometry x="254" y="595" width="320" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_ret" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: det" vertex="1">
+          <mxGeometry x="314" y="695" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="det_end" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry x="359" y="770" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- edges -->
+        <mxCell id="det_e1" edge="1" parent="1" source="det_start" target="det_ln" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e2" edge="1" parent="1" source="det_ln" target="det_case1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_case1_yes" edge="1" parent="1" source="det_case1" target="det_ret1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_case1_no" edge="1" parent="1" source="det_case1" target="det_case2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_case2_yes" edge="1" parent="1" source="det_case2" target="det_ret2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_case2_no" edge="1" parent="1" source="det_case2" target="det_init" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_init_loop" edge="1" parent="1" source="det_init" target="det_loop_k" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_loop_minor" edge="1" parent="1" source="det_loop_k" target="det_minor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_minor_update" edge="1" parent="1" source="det_minor" target="det_update" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="det_e_update_back" edge="1" parent="1" source="det_update" target="det_loop_k" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="617.5" />
+              <mxPoint x="210" y="472.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="det_e_loop_exit" edge="1" parent="1" source="det_loop_k" target="det_ret" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="472.5" />
+              <mxPoint x="590" y="670" />
+              <mxPoint x="414" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="det_e_ret_end" edge="1" parent="1" source="det_ret" target="det_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- labels -->
+        <mxCell id="det_lbl_case1_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="310" y="220" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="det_lbl_case1_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="414" y="265" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="det_lbl_case2_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="310" y="310" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="det_lbl_case2_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="414" y="355" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="det_lbl_loop_exit" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="535" y="450" width="30" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="4. Метод релаксации" id="lab2-relax-diagram">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="rel_start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=13;align=center;fontStyle=1;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Подпрограмма relaxation_method(A, b)&#10;(метод релаксации)" vertex="1">
+          <mxGeometry x="234" y="30" width="360" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="n = len(b)" vertex="1">
+          <mxGeometry x="314" y="125" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_prepare" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Подготовка P и c:&#10;c[i]=b[i]/A[i][i]&#10;P[i][i]=-1, P[i][j]=-A[i][j]/A[i][i]" vertex="1">
+          <mxGeometry x="234" y="185" width="360" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_init" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Начальное приближение:&#10;x = 0&#10;R = c&#10;iter_count = 0" vertex="1">
+          <mxGeometry x="274" y="280" width="280" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_loop" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="iter_count:=0, max_iter-1, 1" vertex="1">
+          <mxGeometry x="274" y="370" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_find_s" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Найти s: индекс max |R[i]|&#10;max_r = |R[s]|" vertex="1">
+          <mxGeometry x="274" y="445" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_check_eps" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="max_r &lt; eps?" vertex="1">
+          <mxGeometry x="344" y="520" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_update_x" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="delta = R[s]&#10;x[s] = x[s] + delta" vertex="1">
+          <mxGeometry x="274" y="615" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_loop_i" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="i:=0, n-1, 1" vertex="1">
+          <mxGeometry x="274" y="690" width="280" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_update_R" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="i ≠ s?" vertex="1">
+          <mxGeometry x="344" y="750" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_R_i" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="R[i] = R[i] + P[i][s]·delta" vertex="1">
+          <mxGeometry x="274" y="825" width="280" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_set_Rs" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="R[s] = 0" vertex="1">
+          <mxGeometry x="274" y="890" width="280" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_after_loop" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="iter_count &gt;= max_iter?" vertex="1">
+          <mxGeometry x="324" y="950" width="180" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_warn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;align=center;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Вывод предупреждения:&#10;«Достигнуто max_iter»" vertex="1">
+          <mxGeometry x="60" y="1045" width="240" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_return" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Возврат: x, iter_count" vertex="1">
+          <mxGeometry x="534" y="1045" width="220" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_end" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;fontSize=12;fontStyle=0;fontFamily=Times New Roman;fillColor=#FFFFFF;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry x="359" y="1110" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- edges -->
+        <mxCell id="rel_e1" edge="1" parent="1" source="rel_start" target="rel_n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e2" edge="1" parent="1" source="rel_n" target="rel_prepare" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e3" edge="1" parent="1" source="rel_prepare" target="rel_init" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e4" edge="1" parent="1" source="rel_init" target="rel_loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e5" edge="1" parent="1" source="rel_loop" target="rel_find_s" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e6" edge="1" parent="1" source="rel_find_s" target="rel_check_eps" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_e_eps_yes" edge="1" parent="1" source="rel_check_eps" target="rel_return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="555" />
+              <mxPoint x="590" y="900" />
+              <mxPoint x="644" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_e_eps_no" edge="1" parent="1" source="rel_check_eps" target="rel_update_x" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel_e7" edge="1" parent="1" source="rel_update_x" target="rel_loop_i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e8" edge="1" parent="1" source="rel_loop_i" target="rel_update_R" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e9_yes" edge="1" parent="1" source="rel_update_R" target="rel_R_i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e9_no_back" edge="1" parent="1" source="rel_update_R" target="rel_loop_i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="780" />
+              <mxPoint x="230" y="712.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_e10_Ri_back" edge="1" parent="1" source="rel_R_i" target="rel_loop_i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="847.5" />
+              <mxPoint x="230" y="712.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rel_e11_loopi_exit" edge="1" parent="1" source="rel_loop_i" target="rel_set_Rs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="712.5" />
+              <mxPoint x="600" y="870" />
+              <mxPoint x="414" y="870" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rel_e12_setRs_back_to_loop" edge="1" parent="1" source="rel_set_Rs" target="rel_loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="910" />
+              <mxPoint x="210" y="395" />
+              <mxPoint x="274" y="395" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rel_e13_after_loop" edge="1" parent="1" source="rel_loop" target="rel_after_loop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="395" />
+              <mxPoint x="590" y="930" />
+              <mxPoint x="414" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="rel_e14_yes_warn" edge="1" parent="1" source="rel_after_loop" target="rel_warn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e15_to_return" edge="1" parent="1" source="rel_after_loop" target="rel_return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_e16_warn_to_return" edge="1" parent="1" source="rel_warn" target="rel_return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="1072.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_e17_return_end" edge="1" parent="1" source="rel_return" target="rel_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- labels -->
+        <mxCell id="rel_lbl_eps_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="500" y="535" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_lbl_eps_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="414" y="595" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_lbl_i_ne_s_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="424" y="805" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_lbl_i_ne_s_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="280" y="765" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_lbl_loopi_exit" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="560" y="690" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_lbl_after_yes" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Да" vertex="1">
+          <mxGeometry x="300" y="975" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_lbl_after_no" parent="1" style="text;html=1;fontSize=11;fontFamily=Times New Roman;fontColor=#000000;fillColor=none;strokeColor=none;" value="Нет" vertex="1">
+          <mxGeometry x="520" y="975" width="30" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
+

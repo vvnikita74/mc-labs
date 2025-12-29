@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import Optional
+
 def read_matrix(filename):
     with open(filename, 'r') as f:
         lines = f.readlines()
@@ -58,7 +62,7 @@ def relaxation_method(A, b, eps=1e-6, max_iter=10000):
         iter_count += 1
 
     if iter_count >= max_iter:
-        print("Достигнуто максимальное количество итерация.")
+        print("Достигнуто максимальное количество итераций.")
 
     return x, iter_count
 
@@ -71,37 +75,106 @@ def is_square_matrix(matrix):
             return False
     return True
 
-def determinant(matrix: list[list[int]]) -> int:
-    det = 0
-    match ln := len(matrix):
-        case 1:
-            return matrix[0][0]
-        case 2:
-            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
-        case _:
-            for k in range(ln):
-                det += matrix[0][k] * (-1) ** k * determinant([matrix[i][:k] + matrix[i][k+1:] for i in range(1,ln)])
+
+def is_diagonally_dominant(
+    A: list[list[float]],
+    tol: float = 0.0,
+) -> bool:
+    """
+    Проверка диагонального преобладания по строкам:
+      |a_ii| > sum_{j != i} |a_ij|
+    tol — допуск для вещественных чисел.
+    """
+    n = len(A)
+    for i in range(n):
+        diag = abs(A[i][i])
+        others = 0.0
+        for j in range(n):
+            if j != i:
+                others += abs(A[i][j])
+        if not (diag > others + tol):
+            return False
+    return True
+
+
+def determinant(matrix: list[list[float]]) -> float:
+    if not matrix or not matrix[0]:
+        raise ValueError("Нельзя вычислить определитель пустой матрицы.")
+    ln = len(matrix)
+    if ln == 1:
+        return matrix[0][0]
+    if ln == 2:
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+
+    det = 0.0
+    for k in range(ln):
+        minor = [matrix[i][:k] + matrix[i][k + 1 :] for i in range(1, ln)]
+        det += matrix[0][k] * ((-1.0) ** k) * determinant(minor)
     return det
 
-if __name__ == "__main__":
-    A = read_matrix('A.txt')
-    b = read_vector('B.txt')
 
-    if not (is_square_matrix(A)):
-      print("Матрица А не является квадратной")
-      exit(1);
-
-    if (determinant(A) == 0):
-      print("Матрица А является вырожденной")
-      exit(1);
+def validate_inputs(
+    A: list[list[float]],
+    b: list[float],
+    *,
+    eps: float,
+    max_iter: int,
+    dominance_tol: float = 0.0,
+) -> None:
+    n = len(A)
+    if len(b) != n:
+        raise ValueError(f"Размерность b ({len(b)}) не совпадает с размерностью A ({n}x{n}).")
 
     # Проверка ненулевой диагонали
-    for i in range(len(b)):
+    for i in range(n):
         if A[i][i] == 0:
             raise ValueError(f"Диагональный элемент A[{i}][{i}] равен 0.")
 
+    if not is_diagonally_dominant(A, tol=dominance_tol):
+        raise ValueError("Матрица A не удовлетворяет условию диагонального преобладания")
 
-    solution, iterations = relaxation_method(A, b, eps=1e-9)
-    for i, val in enumerate(solution, start=1):
-        print(f"x{i} = {val:.4g}")
-    print(f"Итераций: {iterations}")
+    if not is_square_matrix(A):
+        raise ValueError("Матрица A не является квадратной")
+
+    # Проверка невырожденности
+    det = determinant(A)
+    if abs(det) < 1e-12:
+        raise ValueError("Матрица A является вырожденной")
+
+
+def solve_relaxation(
+    *,
+    A: Optional[list[list[float]]] = None,
+    b: Optional[list[float]] = None,
+    A_file: str = "A.txt",
+    B_file: str = "B.txt",
+    eps: float = 1e-9,
+    max_iter: int = 10000,
+    dominance_tol: float = 0.0,
+) -> tuple[list[float], int]:
+    if A is None:
+        A = read_matrix(A_file)
+    if b is None:
+        b = read_vector(B_file)
+
+    validate_inputs(
+        A,
+        b,
+        eps=eps,
+        max_iter=max_iter,
+    )
+    return relaxation_method(A, b, eps=eps, max_iter=max_iter)
+
+if __name__ == "__main__":
+    try:
+        solution, iterations = solve_relaxation(
+            A_file="A.txt",
+            B_file="B.txt",
+            eps=1e-9,
+        )
+        for i, val in enumerate(solution, start=1):
+            print(f"x{i} = {val:.4g}")
+        print(f"Итераций: {iterations}")
+    except ValueError as e:
+        print(str(e))
+        raise SystemExit(1)
